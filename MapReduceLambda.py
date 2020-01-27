@@ -32,35 +32,30 @@ def reduceReg(index, value):
         finalOutput[index] = 0
     finalOutput[index] += 1
 
-#Main
-if __name__ == '__main__':
-
+def main():
+    print('Regular Output')
     #Map and Reduce without lambda
     map_output = []
-    map_output = mapReg(0, inputList)
-    
-    print('Regular Output')
+    map_output = mapReg(0, inputList)    
     print(map_output)
-    
     for k, v in map_output:
-        reduceReg(k, v)
-        
+        reduceReg(k, v)     
     print(finalOutput)
     
-    print('Lambda Outout')
-
+    print('Lambda Output')
     #Map and Reduce with lambda
     mapLambda = lambda k,v: [('Odd', 1) if (number % 2 != 0) else ('Even', 1) for number in inputList]
     reduceLambda = lambda k: 0 if k not in finalLambdaOutput else finalLambdaOutput[k]
-
     #Make Dict and Fill using Lambda
-    dict_x = []
-    dict_x = mapLambda(0, inputList)
-    print(dict_x)
-    
+    lambda_output = []
+    lambda_output = mapLambda(0, inputList)
+    print(lambda_output)    
     #Reduce the Dict
-    for k, v in dict_x:
+    for k, v in lambda_output:
         finalLambdaOutput[k] = reduceLambda(k)
         finalLambdaOutput[k] += 1
-
     print(finalLambdaOutput)
+    
+#Main
+if __name__ == '__main__':
+    main()
